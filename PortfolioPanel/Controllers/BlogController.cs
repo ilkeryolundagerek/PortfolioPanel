@@ -24,12 +24,14 @@ namespace PortfolioPanel.Controllers
         // GET: Blog/Create
         public ActionResult Create()
         {
+            ViewData["Categories"] = CategoryListItem.ReadAll();
+            ViewData["Tags"] = TagListItem.ReadAll();
             return View(new BlogCreateAndEditModel());
         }
 
         // POST: Blog/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(BlogCreateAndEditModel model)
         {
             try
             {

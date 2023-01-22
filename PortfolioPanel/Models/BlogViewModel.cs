@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PortfolioPanel.Data.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,11 +14,32 @@ namespace PortfolioPanel.Models
         public IEnumerable<BlogListItem> Posts { get; set; }
         public BlogIndexViewModel()
         {
-            Posts = new List<BlogListItem>();
+            Posts = BlogListItem.ReadAll();
             ViewTitle = "All Posts";
         }
     }
 
+    public class CategoryIndexViewModel
+    {
+        public string ViewTitle { get; set; }
+        public IEnumerable<CategoryListItem> Categories { get; set; }
+        public CategoryIndexViewModel()
+        {
+            Categories = CategoryListItem.ReadAll();
+            ViewTitle = "All Categories";
+        }
+    }
+
+    public class TagIndexViewModel
+    {
+        public string ViewTitle { get; set; }
+        public IEnumerable<TagListItem> Tags { get; set; }
+        public TagIndexViewModel()
+        {
+            Tags = TagListItem.ReadAll();
+            ViewTitle = "All Tags";
+        }
+    }
     //For Create & Edit Actions
     public class BlogCreateAndEditModel
     {

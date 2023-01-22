@@ -1,0 +1,32 @@
+﻿@model PortfolioPanel.Models.TagListItem
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="card">
+    <div class="card-header bg-gradient-info align-middle">
+        <h4 class="text-light float-left m-0">Create New Tag</h4>
+        @Html.ActionLink("Back To List", "Index", "Tag", new { }, new { @class = "btn btn-light btn-sm float-right" })
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "input-group-text" })
+                        </div>
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="input-group-append">
+                            <input type="submit" value="Create" class="btn btn-outline-info w-100" />
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

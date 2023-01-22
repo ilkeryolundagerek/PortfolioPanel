@@ -15,7 +15,7 @@ namespace PortfolioPanel.Entities
         public string Title { get; set; }
 
         [Required]
-        public string ShortDescription { get; set; }
+        public string ShortDescription { get; set; } = "Lorem ipsum";
 
         [Required]
         public DateTime CDate { get; set; } = DateTime.Now;

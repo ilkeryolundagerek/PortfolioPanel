@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PortfolioPanel.Data.Repositories;
+using PortfolioPanel.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,12 @@ namespace PortfolioPanel.Controllers
 {
     public class TagController : Controller
     {
+        private static readonly TagRepository repo = new TagRepository();
+
         // GET: Tag
         public ActionResult Index()
         {
-            return View();
+            return View(new TagIndexViewModel());
         }
 
         // GET: Tag/Details/5
@@ -28,8 +32,13 @@ namespace PortfolioPanel.Controllers
 
         // POST: Tag/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TagListItem model)
         {
+            repo.Create(new Entities.Tag
+            {
+                Title = model.Title
+            });
+            repo.Save();
             try
             {
                 // TODO: Add insert logic here
