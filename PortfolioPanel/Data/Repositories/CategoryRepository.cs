@@ -13,6 +13,7 @@ namespace PortfolioPanel.Data.Repositories
         public CategoryRepository() : base(new PortfolioContext())
         {
         }
+        public CategoryRepository(PortfolioContext context) : base(context) { }
 
         public IEnumerable<Category> ReadWithPosts(Expression<Func<Category, bool>> expression = null)
         {

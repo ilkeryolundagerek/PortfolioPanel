@@ -13,6 +13,7 @@ namespace PortfolioPanel.Data.Repositories
         public TagRepository() : base(new PortfolioContext())
         {
         }
+        public TagRepository(PortfolioContext context) : base(context) { }
 
         public IEnumerable<Tag> ReadWithPosts(Expression<Func<Tag, bool>> expression = null)
         {

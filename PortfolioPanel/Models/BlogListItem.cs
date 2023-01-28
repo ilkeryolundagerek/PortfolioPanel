@@ -31,6 +31,7 @@ namespace PortfolioPanel.Models
                        IsDraft = p.IsDraft,
                        FeaturedImage = p.FeaturedImage,
                        PDate = p.PDate,
+                       CDate= p.CDate,
                        Categories = p.Categories.Select(x => new CategoryListItem { Id = x.Id, Title = x.Title }),
                        Tags = p.Tags.Select(x => new TagListItem { Id = x.Id, Title = x.Title })
                    };
