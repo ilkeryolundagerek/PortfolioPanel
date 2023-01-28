@@ -1,6 +1,8 @@
 ﻿using PortfolioPanel.Models;
+using PortfolioPanel.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,18 +33,40 @@ namespace PortfolioPanel.Controllers
 
         // POST: Blog/Create
         [HttpPost]
-        public ActionResult Create(BlogCreateAndEditModel model)
+        public ActionResult Create(BlogCreateAndEditModel model, HttpPostedFileBase FeaturedImage, int[] Categories, int[] Tags)
         {
-            try
+            if (FeaturedImage != null)
             {
-                // TODO: Add insert logic here
+                if (FeaturedImage.ContentLength > 0)
+                {
+                    string fName = DateTime.Now.ToString("MMddyyyy_HHmmss_fffffff") + Path.GetExtension(FeaturedImage.FileName);
+                    string fPath = "/content/uploads/" + fName;
+                    FeaturedImage.SaveAs(Server.MapPath(fPath));
+                    model.FeaturedImage = fPath;
+                }
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (Categories.Length > 0)
             {
-                return View();
+                var c = CategoryListItem.ReadAll().Where(x => Categories.Contains(x.Id)).ToList();
+                model.Categories = c;
             }
+
+            if (Tags.Length > 0)
+            {
+                var t = TagListItem.ReadAll().Where(x => Tags.Contains(x.Id)).ToList();
+                model.Tags = t;
+            }
+            ModelState.Remove("Categories");
+            ModelState.Remove("Tags");
+            if (ModelState.IsValid)
+            {
+                BlogService.CreatePost(model);
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["Categories"] = CategoryListItem.ReadAll();
+            ViewData["Tags"] = TagListItem.ReadAll();
+            return View(model);
         }
 
         // GET: Blog/Edit/5

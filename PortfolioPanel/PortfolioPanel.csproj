@@ -1812,6 +1812,7 @@
     <Compile Include="Models\CategoryListItem.cs" />
     <Compile Include="Models\TagListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BlogService.cs" />
     <Compile Include="Utils\IRepository.cs" />
     <Compile Include="Utils\Repository.cs" />
   </ItemGroup>
@@ -2008,6 +2009,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\uploads\" />
     <Folder Include="Views\Portfolio\" />
     <Folder Include="Views\TeamMember\" />
   </ItemGroup>
