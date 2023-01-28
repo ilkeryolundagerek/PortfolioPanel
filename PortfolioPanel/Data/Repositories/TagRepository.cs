@@ -10,7 +10,7 @@ namespace PortfolioPanel.Data.Repositories
 {
     public class TagRepository : Repository<Tag>, ITagRepository
     {
-        public TagRepository() : base(new PortfolioContext())
+        public TagRepository() : base(PortfolioContext.Instance())
         {
         }
         public TagRepository(PortfolioContext context) : base(context) { }

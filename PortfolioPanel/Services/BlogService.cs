@@ -11,12 +11,11 @@ namespace PortfolioPanel.Services
 {
     public static class BlogService
     {
-        private static readonly PortfolioContext _context = new PortfolioContext();
         public static void CreatePost(BlogCreateAndEditModel post)
         {
-            PostRepository postRepo = new PostRepository(_context);
-            CategoryRepository categoryRepo = new CategoryRepository(_context);
-            TagRepository tagRepo = new TagRepository(_context);
+            PostRepository postRepo = new PostRepository();
+            CategoryRepository categoryRepo = new CategoryRepository();
+            TagRepository tagRepo = new TagRepository();
             var cids = post.Categories.Select(x => x.Id);
             var tids = post.Tags.Select(x => x.Id);
             var entity = new Post

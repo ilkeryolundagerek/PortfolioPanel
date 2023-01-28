@@ -5,8 +5,14 @@ namespace PortfolioPanel.Data
 {
     public class PortfolioContext : DbContext
     {
+        private static PortfolioContext instance;
+        public static PortfolioContext Instance()
+        {
+            instance = instance ?? new PortfolioContext();
+            return instance;
+        }
         private readonly static string connection_string = @"Server=.; Database=PortfolioDB; Trusted_Connection=True; MultipleActiveResultSets=True;";
-        public PortfolioContext() : base(connection_string)
+        private PortfolioContext() : base(connection_string)
         {
         }
 

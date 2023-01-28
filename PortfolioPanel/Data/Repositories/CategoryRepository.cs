@@ -10,7 +10,7 @@ namespace PortfolioPanel.Data.Repositories
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public CategoryRepository() : base(new PortfolioContext())
+        public CategoryRepository() : base(PortfolioContext.Instance())
         {
         }
         public CategoryRepository(PortfolioContext context) : base(context) { }

@@ -10,7 +10,7 @@ namespace PortfolioPanel.Data.Repositories
 {
     public class PostRepository : Repository<Post>, IPostRepository
     {
-        public PostRepository() : base(new PortfolioContext()) { }
+        public PostRepository() : base(PortfolioContext.Instance()) { }
         public PostRepository(PortfolioContext context) : base(context) { }
 
         public IEnumerable<Post> ReadByCategory(string categoryName, Expression<Func<Post, bool>> expression = null)
